@@ -1,17 +1,19 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using VipCon.Data;
 
-namespace VipCon.Pages
+namespace VipCon.Pages.Prospect
 {
-    public class IndexModel : PageModel
+    public class CreateModel : PageModel
     {
         private readonly VipCon.Data.ApplicationDbContext _context;
 
-        public IndexModel(VipCon.Data.ApplicationDbContext context)
+        public CreateModel(VipCon.Data.ApplicationDbContext context)
         {
             _context = context;
         }
@@ -31,7 +33,6 @@ namespace VipCon.Pages
                 return Page();
             }
 
-            Prospect.DataSimulacao = DateTime.Now;
             _context.Prospect.Add(Prospect);
             await _context.SaveChangesAsync();
 
