@@ -36,9 +36,11 @@
                     {
                         if (User.IsInRole("Administrator"))
                         {
-                        <li><a asp-page="/Contact">Contact</a></li>
+                            <li><a asp-page="/Contact">Contact</a></li>
+                            <li><a asp-page="/Noticias/Index">Noticias</a></li>
                         }
                     }
+
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
     
