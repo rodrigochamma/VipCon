@@ -16,10 +16,10 @@ namespace VipCon.Data
 
         public static void SeedUsers(UserManager<ApplicationUser> userManager)
         {
-            if (userManager.FindByNameAsync("normal").Result == null)
+            if (userManager.FindByNameAsync("normal@localhost").Result == null)
             {
                 ApplicationUser user = new ApplicationUser();
-                user.UserName = "Normal";
+                user.UserName = "normal@localhost";
                 user.Email = "normal@localhost";                
 
                 IdentityResult result = userManager.CreateAsync(user, "normal123").Result;
@@ -31,10 +31,10 @@ namespace VipCon.Data
             }
 
 
-            if (userManager.FindByNameAsync("admin").Result == null)
+            if (userManager.FindByNameAsync("admin@localhost").Result == null)
             {
                 ApplicationUser user = new ApplicationUser();
-                user.UserName = "admin";
+                user.UserName = "admin@localhost";
                 user.Email = "admin@localhost";
                
 
