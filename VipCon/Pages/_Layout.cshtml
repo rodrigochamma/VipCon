@@ -7,13 +7,16 @@
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/theme.css" />
         <link rel="stylesheet" href="~/css/site.css" />
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        <!--<link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />-->
+        <link rel="stylesheet" href="~/css/theme.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
     </environment>
 </head>
 <body>
@@ -26,7 +29,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-page="/Index" class="navbar-brand">VipCon</a>
+                <a asp-page="/Index"><img src="~/images/logo.jpg" class="img-responsive" id="logo" /></a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -53,7 +56,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2017 - VipCon</p>
+            <p>&copy; 2018 - VipCon</p>
         </footer>
     </div>
 
