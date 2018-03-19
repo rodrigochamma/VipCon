@@ -10,15 +10,25 @@
         <li data-target="#myCarousel" data-slide-to="1"></li>
         <li data-target="#myCarousel" data-slide-to="2"></li>
         <li data-target="#myCarousel" data-slide-to="3"></li>
+        <li data-target="#myCarousel" data-slide-to="4"></li>
     </ol>
     <div class="carousel-inner" role="listbox">
         <div class="item active">
-            <img src="~/images/slide1.jpg" class="img-responsive img-rounded" />
+            <img src="~/images/carro_1.jpg" class="img-responsive img-rounded" />
         </div>
         <div class="item">
-            <img src="~/images/slide2.jpg" class="img-responsive img-rounded" />
+            <img src="~/images/carro_2.jpg" class="img-responsive img-rounded" />
         </div>
-        
+        <div class="item">
+            <img src="~/images/carro_e_motos_1.jpg" class="img-responsive img-rounded" />
+        </div>
+        <div class="item">
+            <img src="~/images/carros_e_motos_2.jpg" class="img-responsive img-rounded" />
+        </div>
+        <div class="item">
+            <img src="~/images/carros_e_motos_3.jpg" class="img-responsive img-rounded" />
+        </div>
+
     </div>
     <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -31,8 +41,8 @@
 </div>
 
 <div class="row">
-    <div class="col-sm-12 col-md-3 col-lg-3 col-xl-3">
-        <h2>Últimas Notícias</h2>
+    <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4">
+        <h2>Notícias</h2>
         <div class="card" style=" margin-bottom:8px">
             <img class="card-img-top img-responsive img-rounded" src="~/images/noticia.jpg" alt="CB 300R">
             <div class="card-body">
@@ -42,43 +52,40 @@
         </div>
 
     </div>
-    <div class="col-sm-12 col-md-3 col-lg-3 col-xl-3">
-        <h2>Parceiros</h2>
-        <a href=""><img src="~/images/caixa_consorcios_400.jpg" class="img-responsive img-thumbnail" style="margin-bottom: 12px;" /></a>
-        <a href=""><img src="~/images/caixa_consorcios_400.jpg" class="img-responsive img-thumbnail" style="margin-bottom: 12px;" /></a>
-        <a href=""><img src="~/images/caixa_consorcios_400.jpg" class="img-responsive img-thumbnail" style="margin-bottom: 12px;" /></a>
+    <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4">
+        <h2>Texto</h2>
+        <p>Um texto de exemplo muito grande seguirá nesta coluna Um texto de exemplo muito grande seguirá nesta coluna Um texto de exemplo muito grande seguirá nesta coluna Um texto de exemplo muito grande seguirá nesta coluna Um texto de exemplo muito grande seguirá nesta coluna </p>
+        <p>Um texto de exemplo muito grande seguirá nesta coluna Um texto de exemplo muito grande seguirá nesta coluna Um texto de exemplo muito grande seguirá nesta coluna Um texto de exemplo muito grande seguirá nesta coluna Um texto de exemplo muito grande seguirá nesta coluna </p>
     </div>
-    <div class="col-md-3">
-        <div class="row">
-            <div class="col-md-4">
-                <form method="post">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <div class="form-group">
-                        <label asp-for="Prospect.Nome" class="control-label"></label>
-                        <input asp-for="Prospect.Nome" class="form-control" />
-                        <span asp-validation-for="Prospect.Nome" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Prospect.Telefone" class="control-label"></label>
-                        <input asp-for="Prospect.Telefone" class="form-control" />
-                        <span asp-validation-for="Prospect.Telefone" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Prospect.Email" class="control-label"></label>
-                        <input asp-for="Prospect.Email" class="form-control" />
-                        <span asp-validation-for="Prospect.Email" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Prospect.ModalidadeConsorcio" class="control-label"></label>
-                        <input asp-for="Prospect.ModalidadeConsorcio" class="form-control" />
-                        <span asp-validation-for="Prospect.ModalidadeConsorcio" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" value="Create" class="btn btn-default" />
-                    </div>
-                </form>
-            </div>
+    <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+        <div class="jumbotron">
+            <h3>Simule seu consórcio</h3>
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Prospect.Nome" class="control-label"></label>
+                    <input asp-for="Prospect.Nome" class="form-control" />
+                    <span asp-validation-for="Prospect.Nome" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Prospect.Telefone" class="control-label"></label>
+                    <input asp-for="Prospect.Telefone" class="form-control" />
+                    <span asp-validation-for="Prospect.Telefone" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Prospect.Email" class="control-label"></label>
+                    <input asp-for="Prospect.Email" class="form-control" />
+                    <span asp-validation-for="Prospect.Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Prospect.ModalidadeConsorcio" class="control-label"></label>
+                    <input asp-for="Prospect.ModalidadeConsorcio" class="form-control" />
+                    <span asp-validation-for="Prospect.ModalidadeConsorcio" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </form>
         </div>
-
     </div>
 </div>
