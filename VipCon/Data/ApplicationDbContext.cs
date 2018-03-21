@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -27,6 +27,8 @@ namespace VipCon.Data
         public DbSet<Prospect> Prospect { get; set; }
 
         public DbSet<VipCon.Models.Noticia> Noticia { get; set; }
+
+        public DbSet<VipCon.Models.Parceiro> Parceiro { get; set; }
 
         // public DbSet<Imagem> Schedule { get; set; }
     }

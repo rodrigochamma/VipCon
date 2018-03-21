@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -6,8 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using VipCon.Data;
+using VipCon.Models;
 
-namespace VipCon.Pages.Prospect
+namespace VipCon.Pages.Parceiros
 {
     public class DetailsModel : PageModel
     {
@@ -18,7 +19,7 @@ namespace VipCon.Pages.Prospect
             _context = context;
         }
 
-        public VipCon.Models.Prospect Prospect { get; set; }
+        public Parceiro Parceiro { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -27,9 +28,9 @@ namespace VipCon.Pages.Prospect
                 return NotFound();
             }
 
-            Prospect = await _context.Prospect.SingleOrDefaultAsync(m => m.Id == id);
+            Parceiro = await _context.Parceiro.SingleOrDefaultAsync(m => m.Id == id);
 
-            if (Prospect == null)
+            if (Parceiro == null)
             {
                 return NotFound();
             }

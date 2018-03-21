@@ -32,17 +32,16 @@
                 <a asp-page="/Index"><img src="~/images/logo_vipcon_horizontal.jpg" class="img-responsive img-rounded" id="logo" /></a>
             </div>
             <div class="navbar-collapse collapse" id="menu">
-                <ul class="nav navbar-nav">
-                    <li><a asp-page="/Index">Home</a></li>
-                    <li><a asp-page="/About">About</a></li>
-                    <li><a asp-page="/Contact">Contact</a></li>
+                <ul class="nav navbar-nav">                    
+                    <li><a asp-page="/About">Sobre</a></li>
+                    <li><a asp-page="/Contact">Parceiros</a></li>
                     @if (User.Identity.IsAuthenticated)
                     {
                         if (User.IsInRole("Administrator"))
                         {
-                            <li><a asp-page="/Prospect/Index">Prospect</a></li>
-                            <li><a asp-page="/Contact">Contact</a></li>
-                            <li><a asp-page="/Noticias/Index">Noticias</a></li>
+                            <li><a asp-page="/Prospect/Index">Simulações</a></li>                            
+                            <li><a asp-page="/Noticias/Index">Cadastro Notícias</a></li>
+                            <li><a asp-page="/Parceiros/Index">Cadastro Parceiros</a></li>
                         }
                     }
 

@@ -22,7 +22,7 @@ namespace VipCon.Pages
         }
 
         [BindProperty]
-        public VipCon.Data.Prospect Prospect { get; set; }
+        public VipCon.Models.Prospect Prospect { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {

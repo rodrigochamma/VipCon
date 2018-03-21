@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,8 +7,9 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using VipCon.Data;
+using VipCon.Models;
 
-namespace VipCon.Pages.Prospect
+namespace VipCon.Pages.Parceiros
 {
     public class EditModel : PageModel
     {
@@ -20,7 +21,7 @@ namespace VipCon.Pages.Prospect
         }
 
         [BindProperty]
-        public VipCon.Models.Prospect Prospect { get; set; }
+        public Parceiro Parceiro { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,9 +30,9 @@ namespace VipCon.Pages.Prospect
                 return NotFound();
             }
 
-            Prospect = await _context.Prospect.SingleOrDefaultAsync(m => m.Id == id);
+            Parceiro = await _context.Parceiro.SingleOrDefaultAsync(m => m.Id == id);
 
-            if (Prospect == null)
+            if (Parceiro == null)
             {
                 return NotFound();
             }
@@ -45,7 +46,7 @@ namespace VipCon.Pages.Prospect
                 return Page();
             }
 
-            _context.Attach(Prospect).State = EntityState.Modified;
+            _context.Attach(Parceiro).State = EntityState.Modified;
 
             try
             {
@@ -53,7 +54,7 @@ namespace VipCon.Pages.Prospect
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ProspectExists(Prospect.Id))
+                if (!ParceiroExists(Parceiro.Id))
                 {
                     return NotFound();
                 }
@@ -66,9 +67,9 @@ namespace VipCon.Pages.Prospect
             return RedirectToPage("./Index");
         }
 
-        private bool ProspectExists(int id)
+        private bool ParceiroExists(int id)
         {
-            return _context.Prospect.Any(e => e.Id == id);
+            return _context.Parceiro.Any(e => e.Id == id);
         }
     }
 }
