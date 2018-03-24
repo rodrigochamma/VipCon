@@ -13,6 +13,7 @@ using VipCon.Data;
 using VipCon.Services;
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
+using AutoMapper;
 
 namespace VipCon
 {
@@ -43,7 +44,7 @@ namespace VipCon
                 .AddEntityFrameworkStores<ApplicationDbContext>()                
                 .AddDefaultTokenProviders();
 
-            
+            services.AddAutoMapper();
 
             services.AddMvc()
                 .AddRazorPagesOptions(options =>
@@ -51,6 +52,8 @@ namespace VipCon
                     options.Conventions.AuthorizeFolder("/Account/Manage");
                     options.Conventions.AuthorizePage("/Account/Logout");
                 });
+
+            
 
             // Register no-op EmailSender used by account confirmation and password reset during development
             // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=532713
