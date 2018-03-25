@@ -36,16 +36,25 @@
                 <a asp-page="/Index"><img src="~/images/logo_vipcon_horizontal.jpg" class="img-responsive img-rounded" id="logo" /></a>
             </div>
             <div class="navbar-collapse collapse" id="menu">
-                <ul class="nav navbar-nav">                    
+                <ul class="nav navbar-nav">
                     <li><a asp-page="/About">Sobre</a></li>
-                    <li><a asp-page="/Contact">Parceiros</a></li>
+                    <li><a asp-page="/Contact">Contato</a></li>
                     @if (User.Identity.IsAuthenticated)
                     {
                         if (User.IsInRole("Administrator"))
                         {
-                            <li><a asp-page="/Prospect/Index">Simulações</a></li>                            
-                            <li><a asp-page="/Noticias/Index">Cadastro Notícias</a></li>
-                            <li><a asp-page="/Parceiros/Index">Cadastro Parceiros</a></li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                    Cadastros
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a asp-page="/Prospect/Index">Simulações</a></li>
+                                    <li><a asp-page="/Noticias/Index">Notícias</a></li>
+                                    <li><a asp-page="/Parceiros/Index">Parceiros</a></li>
+                                    <li><a asp-page="/Usuarios/ListaUsuario">Usuários</a></li>
+                                </ul>
+                            </li>
                         }
                     }
 

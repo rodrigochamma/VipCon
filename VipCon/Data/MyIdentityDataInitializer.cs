@@ -16,29 +16,32 @@ namespace VipCon.Data
 
         public static void SeedUsers(UserManager<ApplicationUser> userManager)
         {
-            if (userManager.FindByNameAsync("normal@localhost").Result == null)
+            //if (userManager.FindByNameAsync("parceiro@gmail.com").Result == null)
+            //{
+            //    ApplicationUser user = new ApplicationUser();
+            //    user.UserName = "parceiro@gmail.com";
+            //    user.Email = "parceiro@gmail.com";
+            //    user.Nome = "Parceiro";
+            //    user.Admin = false;
+
+            //    IdentityResult result = userManager.CreateAsync(user, "parceiro123").Result;
+
+            //    if (result.Succeeded)
+            //    {
+            //        userManager.AddToRoleAsync(user, "Parceiro").Wait();
+            //    }
+            //}
+
+
+            if (userManager.FindByNameAsync("paduacastrosti@gmail.com").Result == null)
             {
                 ApplicationUser user = new ApplicationUser();
-                user.UserName = "normal@localhost";
-                user.Email = "normal@localhost";                
+                user.UserName = "paduacastrosti@gmail.com";
+                user.Email = "paduacastrosti@gmail.com";
+                user.Nome = "PCS";
+                user.Admin = true;
 
-                IdentityResult result = userManager.CreateAsync(user, "normal123").Result;
-
-                if (result.Succeeded)
-                {
-                    userManager.AddToRoleAsync(user,"NormalUser").Wait();
-                }
-            }
-
-
-            if (userManager.FindByNameAsync("admin@localhost").Result == null)
-            {
-                ApplicationUser user = new ApplicationUser();
-                user.UserName = "admin@localhost";
-                user.Email = "admin@localhost";
-               
-
-                IdentityResult result = userManager.CreateAsync(user, "admin123").Result;
+                IdentityResult result = userManager.CreateAsync(user, "pcs123").Result;
 
                 if (result.Succeeded)
                 {
@@ -49,10 +52,10 @@ namespace VipCon.Data
 
         public static void SeedRoles (RoleManager<MyIdentityRole> roleManager)
         {
-            if (!roleManager.RoleExistsAsync("NormalUser").Result)
+            if (!roleManager.RoleExistsAsync("Parceiro").Result)
             {
                 MyIdentityRole role = new MyIdentityRole();
-                role.Name = "NormalUser";                
+                role.Name = "Parceiro";                
                 IdentityResult roleResult = roleManager.
                 CreateAsync(role).Result;
             }

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace VipCon.Pages
 {
-    [Authorize(Roles = "Administrator")]
+    //[Authorize(Roles = "Administrator")]
     public class ContactModel : PageModel
     {
         public string Message { get; set; }

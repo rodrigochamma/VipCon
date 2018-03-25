@@ -45,27 +45,38 @@ namespace VipCon.Pages.Account.Manage
             public string Email { get; set; }
 
             [Phone]
-            [Display(Name = "Phone number")]
+            [Display(Name = "Telefone")]
             public string PhoneNumber { get; set; }
+
+            [Required(ErrorMessage = "O campo Nome é obrigatório")]
+            public string Nome { get; set; }
+
+            public string SobreNome { get; set; }
         }
 
         public async Task<IActionResult> OnGetAsync()
         {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
                 throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
 
-            Username = user.UserName;
+            //Username = user.UserName;
 
             Input = new InputModel
             {
                 Email = user.Email,
-                PhoneNumber = user.PhoneNumber
+                PhoneNumber = user.PhoneNumber,
+                Nome = user.Nome,
+                SobreNome = user.Sobrenome
             };
 
-            IsEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
+            //IsEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
 
             return Page();
         }
@@ -83,25 +94,33 @@ namespace VipCon.Pages.Account.Manage
                 throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
 
-            if (Input.Email != user.Email)
-            {
-                var setEmailResult = await _userManager.SetEmailAsync(user, Input.Email);
-                if (!setEmailResult.Succeeded)
-                {
-                    throw new ApplicationException($"Unexpected error occurred setting email for user with ID '{user.Id}'.");
-                }
-            }
+            //if (Input.Email != user.Email)
+            //{
+            //    var setEmailResult = await _userManager.SetEmailAsync(user, Input.Email);
+            //    if (!setEmailResult.Succeeded)
+            //    {
+            //        throw new ApplicationException($"Unexpected error occurred setting email for user with ID '{user.Id}'.");
+            //    }
+            //}
 
-            if (Input.PhoneNumber != user.PhoneNumber)
-            {
-                var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
-                if (!setPhoneResult.Succeeded)
-                {
-                    throw new ApplicationException($"Unexpected error occurred setting phone number for user with ID '{user.Id}'.");
-                }
-            }
+            //if (Input.PhoneNumber != user.PhoneNumber)
+            //{
+            //    var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
+            //    if (!setPhoneResult.Succeeded)
+            //    {
+            //        throw new ApplicationException($"Unexpected error occurred setting phone number for user with ID '{user.Id}'.");
+            //    }
+            //}
 
-            StatusMessage = "Your profile has been updated";
+            user.Email = Input.Email;
+            user.PhoneNumber = Input.PhoneNumber;
+            user.Nome = Input.Nome;
+            user.Sobrenome = Input.SobreNome;
+
+            await _userManager.UpdateAsync(user);
+
+
+            StatusMessage = "Seu perfil foi atualizado";
             return RedirectToPage();
         }
         public async Task<IActionResult> OnPostSendVerificationEmailAsync()
