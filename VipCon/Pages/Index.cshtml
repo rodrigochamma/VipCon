@@ -60,28 +60,29 @@
     <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
         <div class="jumbotron">
             <h3>Simule seu consórcio</h3>
-            <form method="post">
+            <form method="post" id="formSimulacao">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
                     <label asp-for="Prospect.ModalidadeConsorcio" class="control-label"></label>
-                    @*<input asp-for="Prospect.ModalidadeConsorcio" class="form-control" />*@
+                    <br />
                     <div class="btn-group" data-toggle="buttons">
                         <label class="btn btn-primary">
-                            <input asp-for="Prospect.ModalidadeConsorcio" value="Imóvel" type="radio"  id="option1" autocomplete="off"> Imóvel
+                            <input asp-for="Prospect.ModalidadeConsorcio" value="Imóvel" type="radio" id="option1" autocomplete="off"> Imóvel
                         </label>
                         <label class="btn btn-primary">
-                            <input asp-for="Prospect.ModalidadeConsorcio" value="Automóvel" type="radio"  id="option2" autocomplete="off"> Automóvel
+                            <input asp-for="Prospect.ModalidadeConsorcio" value="Automóvel" type="radio" id="option2" autocomplete="off"> Automóvel
                         </label>
                         <label class="btn btn-primary">
-                            <input asp-for="Prospect.ModalidadeConsorcio" value="Moto" type="radio"  id="option3" autocomplete="off"> Moto
+                            <input asp-for="Prospect.ModalidadeConsorcio" value="Moto" type="radio" id="option3" autocomplete="off"> Moto
                         </label>
                     </div>
+                    <br />
                     <span asp-validation-for="Prospect.ModalidadeConsorcio" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="Prospect.Nome" class="control-label"></label>
                     <input asp-for="Prospect.Nome" class="form-control" />
-                    <span asp-validation-for="Prospect.Nome" class="text-danger"></span>                    
+                    <span asp-validation-for="Prospect.Nome" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="Prospect.Telefone" class="control-label"></label>
@@ -95,9 +96,12 @@
                 </div>
 
                 <div class="form-group">
-                    <input type="submit" value="Simular" class="btn btn-default" />
+                    <input value="Simular" type="submit" class="btn btn-default" />
                 </div>
             </form>
         </div>
     </div>
 </div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

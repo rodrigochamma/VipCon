@@ -28,14 +28,14 @@ namespace VipCon.Pages
         {
             if (!ModelState.IsValid)
             {
-                return Page();
+                return Page();                
             }
 
             Prospect.DataSimulacao = DateTime.Now;
             _context.Prospect.Add(Prospect);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./Index");            
         }
     }
 }
