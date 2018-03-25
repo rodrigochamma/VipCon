@@ -11,7 +11,7 @@
 <h4>Noticia</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-12">
         <form method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -26,7 +26,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Noticia.Descricao" class="control-label"></label>
-                <input asp-for="Noticia.Descricao" class="form-control" />
+                <textarea asp-for="Noticia.Descricao" class="form-control summernote"></textarea>
                 <span asp-validation-for="Noticia.Descricao" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -36,7 +36,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Noticia.Imagem" class="control-label"></label>
-                <input asp-for="Image" type="file" class="form-control" />
+                <input asp-for="Imagem" type="file" class="form-control" />
                 <span asp-validation-for="Noticia.Imagem" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -52,4 +52,10 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.summernote').summernote({ lang: 'pt-BR' });
+        });
+    </script>
 }

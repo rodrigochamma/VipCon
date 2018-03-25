@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using VipCon.Data;
 using VipCon.Models;
+using SixLabors.ImageSharp;
+using SixLabors.Primitives;
 
 namespace VipCon.Pages.Noticias
 {
@@ -32,7 +34,7 @@ namespace VipCon.Pages.Noticias
         public Noticia Noticia { get; set; }
 
         [BindProperty]
-        public IFormFile Image { set; get; }
+        public IFormFile Imagem { set; get; }
 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -41,17 +43,47 @@ namespace VipCon.Pages.Noticias
                 return Page();
             }
 
-            if (this.Image != null)
-            {
-                var fileName = GetUniqueName(this.Image.FileName);
-                var uploads = Path.Combine(hostingEnvironment.WebRootPath, "uploads");
-                var filePath = Path.Combine(uploads, fileName);
-                this.Image.CopyTo(new FileStream(filePath, FileMode.Create));
-                this.Noticia.Imagem = fileName; // Set the file name
-            }
-
             _context.Noticia.Add(Noticia);
             await _context.SaveChangesAsync();
+            
+            if (this.Imagem != null)
+            {
+                ImagemNoticia i = new ImagemNoticia();
+                i.imagemNome = GetUniqueName(this.Imagem.FileName);
+                i.idNoticia = this.Noticia.ID;
+
+                if (!Directory.Exists(hostingEnvironment.WebRootPath + i.ImagemPasta))
+                {
+                    Directory.CreateDirectory(hostingEnvironment.WebRootPath + i.ImagemPasta);
+                }
+
+                if (!Directory.Exists(hostingEnvironment.WebRootPath + i.ThumbPasta))
+                {
+                    Directory.CreateDirectory(hostingEnvironment.WebRootPath + i.ThumbPasta);
+                }
+
+                using (var stream = new FileStream(hostingEnvironment.WebRootPath + i.ImagemCaminho, FileMode.Create))
+                {
+                    this.Imagem.CopyTo(stream);
+                    stream.Dispose();
+                }
+                  
+                using (Image<Rgba32> img = Image.Load(hostingEnvironment.WebRootPath + i.ImagemCaminho))
+                {
+                    if (img.Width > 1200)
+                    {
+                        img.Mutate(ctx => ctx.Resize(1200, 0));
+                    }
+                    img.Save(hostingEnvironment.WebRootPath + i.ImagemCaminho);
+
+                    img.Mutate(ctx => ctx.Resize(150, 0));
+                    img.Save(hostingEnvironment.WebRootPath + i.ThumbCaminho);
+                }
+
+                this.Noticia.Imagem = i.imagemNome;
+                await _context.SaveChangesAsync();
+            }
+                      
 
             return RedirectToPage("./Index");
         }

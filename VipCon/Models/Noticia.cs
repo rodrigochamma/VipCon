@@ -13,5 +13,6 @@ namespace VipCon.Models
         public string Descricao { get; set; }
         public DateTime DataHoraInclusao { get; set; }
         public string Imagem { set; get; }
+        public bool Publicado { set; get; }
     }
 }

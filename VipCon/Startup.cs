@@ -43,8 +43,8 @@ namespace VipCon
                 .AddEntityFrameworkStores<ApplicationDbContext>()                
                 .AddDefaultTokenProviders();
 
-            
 
+            services.AddAntiforgery(o => o.HeaderName = "XSRF-TOKEN");
             services.AddMvc()
                 .AddRazorPagesOptions(options =>
                 {

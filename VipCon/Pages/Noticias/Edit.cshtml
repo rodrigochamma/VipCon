@@ -11,7 +11,7 @@
 <h4>Noticia</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-12">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Noticia.ID" />
@@ -27,7 +27,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Noticia.Descricao" class="control-label"></label>
-                <input asp-for="Noticia.Descricao" class="form-control" />
+                <textarea asp-for="Noticia.Descricao" class="form-control summernote"></textarea>
                 <span asp-validation-for="Noticia.Descricao" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -36,9 +36,18 @@
                 <span asp-validation-for="Noticia.DataHoraInclusao" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Noticia.Imagem" class="control-label"></label>
-                <input asp-for="Noticia.Imagem" class="form-control" />
-                <span asp-validation-for="Noticia.Imagem" class="text-danger"></span>
+                <label class="control-label">Miniatura:</label>
+                <p><img id="my-cropped-image" src="~/uploads/noticias_thumbs/@Model.Noticia.ID.ToString()/@Model.Noticia.Imagem" /></p>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Imagem:</label>
+                <p>
+                    <a href="#" id="hl-crop-image" class="btn-primary">Criar Miniatura</a>
+                </p>
+                <p>
+                    <img id="my-origin-image" src="~/uploads/noticias/@Model.Noticia.ID.ToString()/@Model.Noticia.Imagem" />
+                    
+                </p>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default" />
@@ -53,4 +62,112 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script type="text/javascript">
+        var imageCropWidth = 0;
+        var imageCropHeight = 0;
+        var cropPointX = 0;
+        var cropPointY = 0;
+
+        $(document).ready(function () {
+            initCrop();
+            $('.summernote').summernote({
+                lang: 'pt-BR',
+                minHeight: 300,
+                callbacks: {
+                    onImageUpload: function (files, editor, welEditable) {
+                        for (var i = files.length - 1; i >= 0; i--) {
+                            sendFile(files[i], this);
+                        }
+                    }
+                },
+                
+            });
+        });
+
+        $("#hl-crop-image").on("click", function (e) {
+            e.preventDefault();
+            cropImage();
+        });
+
+        function initCrop() {
+            $('#my-origin-image').Jcrop({
+                onChange: setCoordsAndImgSize
+            });
+        }
+
+        function setCoordsAndImgSize(e) {
+
+            imageCropWidth = e.w;
+            imageCropHeight = e.h;
+
+            cropPointX = e.x;
+            cropPointY = e.y;
+        }
+
+        //Cortar Foto para Criar Miniatura
+        function cropImage() {
+
+            if (imageCropWidth == 0 && imageCropHeight == 0) {
+                alert("Selecione uma área na imagem para cortar.");
+                return;
+            }
+
+            
+
+            $.ajax({
+                url: '/Noticias/Edit?handler=CriarMiniatura',
+                type: 'POST',
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("XSRF-TOKEN",
+                        $('input:hidden[name="__RequestVerificationToken"]').val());
+                },
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: JSON.stringify({
+                    imagemNome: $("#imagem-nome").val(),
+                    cropPointX: cropPointX,
+                    cropPointY: cropPointY,
+                    imageCropWidth: imageCropWidth,
+                    imageCropHeight: imageCropHeight
+                }),
+                success: function (data) {
+                    console.log(data);
+                    var srcAtual = $("#my-cropped-image").attr("src");
+                    if (srcAtual.indexOf("?") > 0) {
+                        srcAtual = srcAtual.substring(0, srcAtual.indexOf("?"));
+
+                    }
+                    
+                    $("#my-cropped-image").attr("src", srcAtual + "?t=" + new Date().getTime());
+                 
+                },
+                failure: function (response) {
+                    alert(response);
+                }
+            });
+        }
+
+        //ENviar Foto adicionada no corpo da Notícia
+        function sendFile(file, editor, welEditable) {
+            data = new FormData();
+            data.append("imagem", file);
+            $.ajax({
+                data: data,
+                type: "POST",
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("XSRF-TOKEN",
+                        $('input:hidden[name="__RequestVerificationToken"]').val());
+                },
+                url: '/Noticias/Edit?handler=Upload',
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (url) {
+                    editor.insertImage(welEditable, url);
+                }
+            });
+        }
+
+    </script>
 }
