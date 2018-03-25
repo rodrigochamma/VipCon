@@ -12,7 +12,7 @@ namespace VipCon.Pages
 
         public void OnGet()
         {
-            Message = "Your application description page.";
+            Message = "Aqui vai um Texto sobre a vipcon.";
         }
     }
 }

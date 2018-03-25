@@ -54,9 +54,9 @@ body {
 }
 
 
-/*.navbar-nav li a {
-    font-weight: bold;
-}*/
+.navbar-nav li a {
+    font-size: 22px;
+}
 
 footer {
     background: #3e4095 repeat url('cubes.png') ;
@@ -156,19 +156,24 @@ footer {
     .navbar-nav li a {
         height: 30px;
         font-weight: 100;
+        font-size: 18px;
     }
     #textoFooter {
         padding-right: 5px;
         font-size: 10px;
     }
+    .dropdown-header {
+        color: aliceblue;
+    }
 }
 
 @media (max-width: 991.98px) {
 
-    .navbar-nav li a, .navbar-nav li button {
+    .navbar-nav li a {
         font-weight: 100;
         padding-left: 8px;
         padding-right: 8px;
+        font-size: 18px;
     }
 
     #menu {
