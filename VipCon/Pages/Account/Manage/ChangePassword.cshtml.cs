@@ -48,7 +48,7 @@ namespace VipCon.Pages.Account.Manage
 
             [DataType(DataType.Password)]
             [Display(Name = "Confirmação Nova Senha")]
-            [Compare("NewPassword", ErrorMessage = "Os campos Nova Senha e Confirmação de senha são diferentes.")]
+            [Compare("NewPassword", ErrorMessage = "O valor digitado no campo Senha e no campo Confirmação Senha são diferentes.")]
             public string ConfirmPassword { get; set; }
         }
 

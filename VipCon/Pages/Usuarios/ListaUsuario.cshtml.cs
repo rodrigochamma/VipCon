@@ -11,7 +11,7 @@ using VipCon.Data;
 using VipCon.DTO;
 using VipCon.Models;
 
-namespace VipCon.Pages.Account.Manage
+namespace VipCon.Pages.Usuarios
 {
     public class ListaUsuario : PageModel
     {
@@ -31,7 +31,14 @@ namespace VipCon.Pages.Account.Manage
         public async Task OnGetAsync()
         {
             IList<ApplicationUser> usuarios = await _userManager.Users.ToListAsync();
-            
+
+            //Removo o usuário admin e o usuário que está logado da listagem.
+            ApplicationUser adminUser = usuarios.Where(usr => usr.Email == "paduacastrosti@gmail.com").FirstOrDefault<ApplicationUser>();
+            usuarios.Remove(adminUser);
+
+            var currentUser = await _userManager.GetUserAsync(User);            
+            usuarios.Remove(currentUser);
+
             UsuarioParaListagemDTO = _mapper.Map<IList<UsuarioParaListagemDTO>>(usuarios);
         }
     }

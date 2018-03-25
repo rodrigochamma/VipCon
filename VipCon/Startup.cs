@@ -48,9 +48,13 @@ namespace VipCon
 
             services.AddMvc()
                 .AddRazorPagesOptions(options =>
-                {
-                    options.Conventions.AuthorizeFolder("/Account/Manage");
+                {                    
                     options.Conventions.AuthorizePage("/Account/Logout");
+                    options.Conventions.AuthorizeFolder("/Account/Manage");
+                    options.Conventions.AuthorizeFolder("/Usuarios");
+                    options.Conventions.AuthorizeFolder("/Noticias");
+                    options.Conventions.AuthorizeFolder("/Parceiros");
+                    options.Conventions.AuthorizeFolder("/Prospect");
                 });
 
             

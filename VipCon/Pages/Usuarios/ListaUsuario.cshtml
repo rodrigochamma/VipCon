@@ -1,15 +1,15 @@
 ﻿@page
-@model VipCon.Pages.Account.Manage.ListaUsuario
+@model VipCon.Pages.Usuarios.ListaUsuario
 
 @{
     ViewData["Title"] = "Lista Usuários";
     Layout = "~/Pages/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Lista Usuários</h2>
 
 <p>
-    <a asp-page="Create">Criar Novo</a>
+    <a asp-page="CriarUsuario">Criar Novo</a>
 </p>
 <table class="table">
     <thead>
@@ -45,9 +45,8 @@
                 @Html.DisplayFor(modelItem => item.Perfil)
             </td>            
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.Email">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Email">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Email">Delete</a>
+                <a asp-page="./ResetarSenhaUsuario" asp-route-id="@item.Email">Resetar Senha</a> |                
+                <a asp-page="./DeletaUsuario" asp-route-id="@item.Email">Excluir</a>
             </td>
         </tr>
 }

@@ -1,0 +1,42 @@
+﻿@page
+@model ResetarSenhaModel
+
+@{
+    ViewData["Title"] = "Resetar Senha";
+    Layout = "~/Pages/_Layout.cshtml";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<h4>Tem certeza que deseja resetar a senha do usuário @Html.DisplayFor(model => model.ApplicationUser.Email)?</h4>
+<h4>A senha do usuário será alterada para "vipcon123".</h4>
+<div>
+    @*<h4>Usuário</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicationUser.Nome)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationUser.Nome)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicationUser.Sobrenome)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationUser.Sobrenome)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicationUser.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationUser.Email)
+        </dd>
+    </dl>*@
+    
+    <form method="post">
+        <input type="hidden" asp-for="ApplicationUser.Email" />
+        <input type="submit" value="Resetar" class="btn btn-default" /> |
+        <a asp-page="./ListaUsuario">Voltar à listagem</a>
+    </form>
+</div>

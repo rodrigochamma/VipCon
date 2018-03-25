@@ -48,6 +48,7 @@ namespace VipCon.Pages.Account.Manage
             [Display(Name = "Telefone")]
             public string PhoneNumber { get; set; }
 
+            [Required(ErrorMessage = "O campo Nome é obrigatório")]
             public string Nome { get; set; }
 
             public string SobreNome { get; set; }
@@ -55,6 +56,10 @@ namespace VipCon.Pages.Account.Manage
 
         public async Task<IActionResult> OnGetAsync()
         {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
