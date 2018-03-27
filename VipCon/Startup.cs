@@ -52,11 +52,13 @@ namespace VipCon
                 .AddRazorPagesOptions(options =>
                 {                    
                     options.Conventions.AuthorizePage("/Account/Logout");
+                    options.Conventions.AuthorizePage("/LinksUteis");
                     options.Conventions.AuthorizeFolder("/Account/Manage");
                     options.Conventions.AuthorizeFolder("/Usuarios");
                     options.Conventions.AuthorizeFolder("/Noticias");
                     options.Conventions.AuthorizeFolder("/Parceiros");
                     options.Conventions.AuthorizeFolder("/Prospect");
+                    options.Conventions.AllowAnonymousToPage("/Parceiros/Listagem");
                 });
 
             

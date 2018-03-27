@@ -1,0 +1,38 @@
+﻿@page
+@model VipCon.Pages.Parceiros.ListagemModel
+@{
+    ViewData["Title"] = "Listagem";
+    Layout = "~/Pages/_Layout.cshtml";
+}
+
+
+<h2>Parceiros</h2>
+@*<img src="~/images/logo_vipcon.jpg" class="img-responsive center-block" alt="teste">*@
+
+<div class="container">
+    <div data-columns="" id="columns">
+        @foreach (var item in Model.Parceiro)
+        {
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <a href="@Html.DisplayFor(modelItem => item.Link)"  target="_blank">
+                        <img src="@Html.DisplayFor(modelItem => item.Imagem)" class="img-responsive center-block" alt="teste">
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <link href="~/css/listagem_parceiros.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/js/Salvattore.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#item-menu-parceiros').addClass("active");
+        });
+
+    </script>
+   
+}
