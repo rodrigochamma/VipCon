@@ -1,0 +1,27 @@
+﻿@page
+@model VipCon.Pages.LinksUteisModel
+@{
+    ViewData["Title"] = "LinksUteis";
+    Layout = "~/Pages/_Layout.cshtml";
+}
+
+<h2>Links Úteis</h2>
+<br />
+<br />
+
+<a href="https://accounts.zoho.com/signin?service_language=pt&servicename=VirtualOffice&signupurl=https://workplace.zoho.com/orgsignup.do" target="_blank">
+    WebMail
+    <i class="fa fa-icone fa-envelope fa-fw"></i>
+</a>
+
+
+
+@section Scripts {
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#item-menu-links').addClass("active");
+        });
+
+    </script>
+}

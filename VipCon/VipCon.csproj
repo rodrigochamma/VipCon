@@ -10,6 +10,12 @@
     <Compile Remove="Migrations\20180321003157_Phonestring.Designer.cs" />
     <Compile Remove="Migrations\20180321004048_Phone2.cs" />
     <Compile Remove="Migrations\20180321004048_Phone2.Designer.cs" />
+    <Compile Remove="Migrations\20180327030009_ParceiroLink.cs" />
+    <Compile Remove="Migrations\20180327030009_ParceiroLink.Designer.cs" />
+    <Compile Remove="Migrations\20180327034426_Versao2.cs" />
+    <Compile Remove="Migrations\20180327034426_Versao2.Designer.cs" />
+    <Compile Remove="Migrations\20180327034620_Versao2.cs" />
+    <Compile Remove="Migrations\20180327034620_Versao2.Designer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="C:\Users\Rodrigo\Documents\_LoginPartial.cshtml" Link="Pages\_LoginPartial.cshtml" />
