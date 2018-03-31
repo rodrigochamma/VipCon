@@ -14,6 +14,7 @@ using VipCon.Services;
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
 using AutoMapper;
+using VipCon.Helpers;
 
 namespace VipCon
 {
@@ -45,7 +46,7 @@ namespace VipCon
                 .AddDefaultTokenProviders();
 
             services.AddAutoMapper();
-
+            services.Configure<ConfiguracoesSMTP>(Configuration.GetSection("ConfiguracoesSMTP"));
 
             services.AddAntiforgery(o => o.HeaderName = "XSRF-TOKEN");
             services.AddMvc()
